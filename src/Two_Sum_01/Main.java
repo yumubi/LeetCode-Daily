@@ -1,12 +1,12 @@
-package src;
+package src.Two_Sum_01;
+
+
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Two_Sum_01 {
-    public static void main(String[] args) {
-
-    }
+public class Main {
 }
 
 class Solution {
