@@ -6,6 +6,10 @@ public class Main {
 
 }
 
+/**
+ * 双指针
+ * log n
+ */
 class Solution {
     public boolean isPalindrome(int x) {
         if(x < 0 ) return false;
