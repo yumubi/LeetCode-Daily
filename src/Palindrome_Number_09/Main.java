@@ -14,8 +14,11 @@ class Solution {
 
         int lo = 0;
         int hi = s.length() - 1;
-        while( lo++ <= hi--) {
+        while( lo <= hi) {
             if(s.charAt(lo) != s.charAt(hi)) return false;
+            //把lo++和hi--写在while判断条件里面报错
+            lo++;
+            hi--;
         }
         return true;
     }
