@@ -2,6 +2,8 @@ package src.Longest_Commom_Prefix;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 public class Solution {
 
 
@@ -141,7 +143,23 @@ public class Solution {
     }
 
 
+    /**
+     * 排序解决
+     * @param strs
+     * @return
+     */
+    public String longestCommonPrefix5(String[] strs) {
+        StringBuilder ans = new StringBuilder();
+        Arrays.sort(strs);
 
+        char[] lo = strs[0].toCharArray();
+        char[] hi = strs[strs.length-1].toCharArray();
+        for(int i = 0; i < strs[0].length(); i++) {
+            if(lo[i] != hi[i]) return ans.toString();
+            ans.append(lo[i]);
+        }
+                return ans.toString();
+    }
 
 
 
