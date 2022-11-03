@@ -44,6 +44,53 @@ public class Solution {
         j = tmp;
     }
 
+    /**
+     * 双指针，i--就很妙
+     *  i--是先用i再减，就算是第一个，减完i为-1但是已经到下一层循环了，i+1之后i又变回0了
+     *  
+     *  
+     * 我们可以将数组分成「前后」两段：
+     * 前半段是有效部分，存储的是不等于 val 的元素。
+     * 后半段是无效部分，存储的是等于 val 的元素。
+     * 最终答案返回有效部分的结尾下标。
+     https://leetcode.cn/problems/remove-element/solution/shua-chuan-lc-shuang-bai-shuang-zhi-zhen-mzt8/
+     * @param nums
+     * @param val
+     * @return
+     */
+    public int removeElement1(int[] nums, int val) {
+        int j = nums.length - 1;
+        for(int i = 0; i <= j; i++) {
+            if(nums[i] == val) {
+                Swap(nums, i--, j--);
+            }
+        }
+        return j+1;
+    }
+    public void Swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j]  = tmp;
+    }
+
+    // TODO: 2022/11/3 通用解法没看懂
+    //https://leetcode.cn/problems/remove-element/solution/shua-chuan-lc-shuang-bai-shuang-zhi-zhen-mzt8/
+
+
+    /**
+     * 
+     * @param nums
+     * @param val
+     * @return
+     */
+    public int removeElement2(int[] nums, int val) {
+
+        return 0;
+    }
+
+
+
+
     @Test
     public void test() {
         int[] nums= {4,5};
