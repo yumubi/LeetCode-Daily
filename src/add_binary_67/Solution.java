@@ -1,8 +1,6 @@
 package src.add_binary_67;
-
 import org.junit.Test;
 
-import java.util.Arrays;
 
 public class Solution {
     /**
@@ -36,6 +34,46 @@ public class Solution {
         }
         return sb.toString();
 }
+
+
+    /**
+     *库函数
+     * @param a
+     * @param b
+     * @return
+     */
+    public String addBinary2(String a, String b) {
+        return Integer.toBinaryString(
+                Integer.parseInt(a, 2) + Integer.parseInt(b, 2)
+        );
+
+}
+
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public String addBinary3(String a, String b) {
+        StringBuilder ans = new StringBuilder();
+        int n = Math.max(a.length(), b.length());
+        int carry = 0;
+        for(int i = 0; i < n; i++) {
+            carry += i < a.length() ? a.charAt(a.length()-1-i)-'0' : 0;
+            carry += i < b.length() ? b.charAt(b.length()-1-i)-'0' : 0;
+            ans.append((char)(carry % 2) + '0');
+            carry /= 2;
+        }
+        if(carry > 0) ans.append('1');
+        ans.reverse();
+        return ans.toString();
+}
+
+
+    public String addBinary4(String a, String b) {
+
+    }
 
 
     @Test
