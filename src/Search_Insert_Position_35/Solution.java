@@ -1,8 +1,6 @@
 package src.Search_Insert_Position_35;
 
 import org.junit.Test;
-
-
 public class Solution {
     /**
      *二分法ac
