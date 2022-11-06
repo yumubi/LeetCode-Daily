@@ -70,9 +70,10 @@ public class Solution {
         return ans.toString();
 }
 
-
+    // TODO: 2022/11/6 位运算，待补充
     public String addBinary4(String a, String b) {
 
+        return "";
     }
 
 
