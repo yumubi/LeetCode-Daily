@@ -50,7 +50,7 @@ public class Solution {
 }
 
     /**
-     *
+     *模拟
      * @param a
      * @param b
      * @return
