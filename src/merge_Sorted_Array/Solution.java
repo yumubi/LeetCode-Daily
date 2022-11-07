@@ -48,10 +48,6 @@ public class Solution {
 
     @Test
     public void test() {
-        int[] nums1 = new int[] {2,0};
-        int[] nums2 = new int[] {1};
-        int m = 1, n = 1;
-        merge2(nums1, m, nums2, n);
 
 
     }
