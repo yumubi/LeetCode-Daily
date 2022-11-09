@@ -15,7 +15,8 @@ public class TreeNode {
 
         class Solution {
             public TreeNode balanceBST(TreeNode root) {
-                // TODO: 2022/11/9  
+                // TODO: 2022/11/9
+                return new TreeNode();
             }
         }
 
