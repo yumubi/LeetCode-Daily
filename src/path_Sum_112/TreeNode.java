@@ -1,9 +1,6 @@
 package src.path_Sum_112;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class TreeNode {
     int val;
@@ -82,17 +79,106 @@ public class TreeNode {
 
             /**
              * 递归
-             *
+             *观察要求我们完成的函数，
+             * 我们可以归纳出它的功能：询问是否存在从当前节点 root 到叶子节点的路径，满足其路径和为 sum。
+             * 假定从根节点到当前节点的值之和为 val，
+             * 我们可以将这个大问题转化为一个小问题：是否存在从当前节点的子节点到叶子的路径，满足其路径和为 sum - val。
+             * 不难发现这满足递归的性质，若当前节点就是叶子节点，
+             * 那么我们直接判断 sum 是否等于 val 即可（因为路径和已经确定，就是当前节点的值，我们只需要判断该路径和是否满足条件）。
+             * 若当前节点不是叶子节点，我们只需要递归地询问它的子节点是否能满足条件即可。
              * @param root
              * @param sum
              * @return
              */
             public boolean hasPathSum3(TreeNode root, int sum) {
-                if(root == null) return false;
-                if(root.left == null && root.right == null) return sum == root.val;
+                if (root == null) return false;
+                if (root.left == null && root.right == null) return sum == root.val;
                 return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
             }
 
+
+            /**
+             * bfs+单队列
+             * 路径值覆盖节点值
+             * @param root
+             * @param sum
+             * @return
+             */
+            public boolean hasPathSum4(TreeNode root, int sum) {
+                    if(root == null) return false;
+                    Queue<TreeNode> queue = new LinkedList<TreeNode>();
+                    queue.offer(root);
+
+                    while(!queue.isEmpty()) {
+                        TreeNode poll = queue.poll();
+                        if(poll.left == null && poll.right == null) {
+                            if(poll.val == sum) return true;
+                        } else {
+                            if(poll.left != null) {
+                                poll.left.val += poll.val;
+                                queue.offer(poll.left);
+                            }
+                            if(poll.right != null) {
+                                poll.right.val += poll.val;
+                                queue.offer(poll.right);
+                            }
+                        }
+                    }
+                    return false;
+                }
+
+
+            /**
+             * dfs+单栈
+             * @param root
+             * @param sum
+             * @return
+             */
+                public boolean hasPathSum5(TreeNode root, int sum) {
+                if(root == null) return false;
+                Deque<TreeNode> stack = new LinkedList<>();
+                stack.push(root);
+
+                while(!stack.isEmpty()) {
+                    TreeNode pop = stack.pop();
+                    if(pop.left == null && pop.right == null) {
+                        if(pop.val == sum) return true;
+                    } else {
+                        // TODO: 2022/11/10 这个顺序就很妙，是dfs的精髓
+                        if(pop.right != null) {
+                            pop.right.val += pop.val;
+                            stack.push(pop.right);
+                        }
+                        if(pop.left != null) {
+                            pop.left.val += pop.val;
+                            stack.push(pop.left);
+                        }
+                    }
+                }
+                    return false;
+}
+
+
+            /**
+             * dfs+剪枝
+             */
+        private boolean hasPathSum = false;
+        public boolean hasPathSum6(TreeNode root, int targetSum) {
+                if(root == null) return hasPathSum;
+                fun(root, targetSum, 0);
+                return hasPathSum;
         }
+        public void fun(TreeNode root, int targetSum, int sum) {
+            if(!hasPathSum) {//剪枝，一旦hasPathSum为true,结束
+                sum += root.val;//每次将根节点的值加sum
+                if(root.left == null && root.right == null && sum == targetSum) {//叶子节点时，判断路径节点和是否等于目标值
+                    hasPathSum = true;
+                    return;
+                }
+                if(root.left != null) fun(root.left, targetSum, sum);
+                if(root.right != null) fun(root.right, targetSum, sum);
+            }
+        }
+    }
 
 }
