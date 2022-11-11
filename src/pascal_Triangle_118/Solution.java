@@ -6,6 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Solution {
+
+
+
+
+
+    /**
+     * 杨辉三角
+     * 我是菜逼，numsRows=15莫名奇妙错误
+     * @param numRows
+     * @return
+     */
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> list = new ArrayList<>();
         helper(numRows-1, list);
@@ -34,9 +45,37 @@ public class Solution {
         return factorial(rank) / ( factorial(k) * factorial(rank-k));
     }
 
+
+    /**
+     *
+     * @param numRows
+     * @return
+     */
+
+
+
+
+    public List<List<Integer>> generate2(int numRows) {
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        for (int i = 0; i < numRows; i++) {
+            List<Integer> row = new ArrayList<Integer>();
+            for (int j = 0; j <= i; j++) {
+                if(j == 0 || j == i) row.add(1);
+                else row.add(ret.get(i - 1).get(j - 1) + ret.get(i - 1).get(j));
+            }
+            ret.add(row);
+        }
+        return ret;
+    }
+
+
+
     @Test
     public void test() {
-        System.out.println(generate(10));
+        System.out.println(generate(15));
     }
+
+
+
 
 }
