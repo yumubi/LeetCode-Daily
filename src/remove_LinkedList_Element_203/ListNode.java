@@ -135,9 +135,9 @@ public class ListNode {
         /**
          * 设置两个均指向头节点的指针，pre（记录待删除节点的前一节点）和 cur (记录当前节点)；
          * 遍历整个链表，查找节点值为 val 的节点，找到即删除该节点，否则继续查找。
-         * 1 找到，将当前节点的前一节点（之前最近一个值不等于 val 的节点(pre)）连接到当前节点（cur）的下一个节点（
+         * 1.找到，将当前节点的前一节点（之前最近一个值不等于 val 的节点(pre)）连接到当前节点（cur）的下一个节点（
          * 即将 pre 的下一节点指向 cur 的下一节点：pre->next = cur->next）。
-         * 2 没找到，更新最近一个值不等于 val 的节点（即 pre = cur），并继续遍历（cur = cur->next）。
+         * 2.没找到，更新最近一个值不等于 val 的节点（即 pre = cur），并继续遍历（cur = cur->next）。
          * @param head
          * @param val
          * @return
