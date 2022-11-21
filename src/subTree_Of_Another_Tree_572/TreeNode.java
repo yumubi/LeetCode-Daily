@@ -97,6 +97,7 @@ public class TreeNode {
               else tar.add(rNull);
           }
 
+          // TODO: 21/11/2022 KMP待研究 
           public boolean  kmp() {
               int sLen = sOrder.size(), tLen = tOrder.size();
 
