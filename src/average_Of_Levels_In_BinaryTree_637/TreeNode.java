@@ -148,14 +148,6 @@ public class TreeNode {
 
 
 
-
-
-
-
-
-
-
-
         public List<Double> averageOfLevels01(TreeNode root) {
             List<Double> ans = new ArrayList<>();
             List<Integer> levelNum = new ArrayList<>();
