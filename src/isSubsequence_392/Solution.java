@@ -60,6 +60,8 @@ public class Solution {
         }
         for(int i = m - 1; i >= 0; i--) {
             for(int j = 0; j < 26; j++) {
+                // 记录字母a-z在t[i:]中的位置,如果第i个字符等于字符[a-z][j],那么j在i的位置,
+                // 否则j在t[i+1:]范围,这里倒序遍历,如果j不存在那么f[i][j]的值就是m
                 if(t.charAt(i) == j + 'a') f[i][j] = i;
                 else f[i][j] = f[i + 1][j];
             }
@@ -67,8 +69,46 @@ public class Solution {
 
         int add = 0;
         for(int i = 0; i < n; i++) {
-            if(f[add][s.charAt(i) - 'a'] == m) return false;
+            if(f[add][s.charAt(i) - 'a'] == m) return false;   //从t的第0个字符开始,如果f[0][j]==m,也就是说字母j不在t内,返回false,[ord(s[i]) - ord('a')]表示j,也就是在f数组中的位置
+
             add = f[add][s.charAt(i) - 'a'] + 1;
+        }
+        return true;
+    }
+
+
+    // TODO: 26/11/2022 这个没看懂
+        public boolean isSubsequence3(String s, String t) {
+
+            // 预处理
+            int n = t.length();
+            int[][] dp = new int[n + 1][26]; // 记录每个位置的上一个ch的位置
+            for (char ch = 0; ch < 26; ch++) {
+                int p = -1;
+                for (int i = 0; i <= n; i++) { // 从前往后记录dp
+                    dp[i][ch] = p;
+                    if (i < t.length() && t.charAt(i) == ch + 'a') p = i;
+                }
+            }
+
+            // 匹配
+            int i = n;
+            for (int j = s.length() - 1; j >= 0; j--) { // 跳跃遍历
+                i = dp[i][s.charAt(j) - 'a'];
+                if (i == -1) return false;
+            }
+            return true;
+        }
+
+
+
+
+
+    public boolean isSubsequence4(String s, String t) {
+        int index = -1;
+        for (char c : s.toCharArray()){
+            index = t.indexOf(c, index+1);
+            if (index == -1) return false;
         }
         return true;
     }
